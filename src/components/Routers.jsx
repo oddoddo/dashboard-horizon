@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from '../pages/home/Home'
 import About from '../pages/about/About'
 import Login from '../pages/login/Login'
@@ -6,7 +6,7 @@ import Layout, { LayoutType2 } from './layout/Layout'
 
 function Routers() {
     return (
-        <BrowserRouter>
+        <Router>
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
@@ -16,7 +16,7 @@ function Routers() {
                     <Route path="/login" element={<Login />} />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </Router>
     )
 }
 
