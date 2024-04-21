@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dashboard-horizon/static/css/main.bbd14d09.css",
+    "main.js": "/dashboard-horizon/static/js/main.59fbedd5.js",
+    "static/js/453.96a7c8dc.chunk.js": "/dashboard-horizon/static/js/453.96a7c8dc.chunk.js",
+    "index.html": "/dashboard-horizon/index.html",
+    "main.bbd14d09.css.map": "/dashboard-horizon/static/css/main.bbd14d09.css.map",
+    "main.59fbedd5.js.map": "/dashboard-horizon/static/js/main.59fbedd5.js.map",
+    "453.96a7c8dc.chunk.js.map": "/dashboard-horizon/static/js/453.96a7c8dc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bbd14d09.css",
+    "static/js/main.59fbedd5.js"
+  ]
+}
