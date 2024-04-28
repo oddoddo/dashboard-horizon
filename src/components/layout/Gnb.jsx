@@ -7,6 +7,7 @@ function Gnb() {
         { name: 'Home', path: '/', icon: <RepeatIcon /> },
         { name: 'About', path: '/about', icon: <AddIcon /> },
         { name: 'Login', path: '/login', icon: <LinkIcon /> },
+        { name: 'Todo', path: '/todo', icon: <LinkIcon /> },
     ]
 
     // 현재 페이지의 경로를 가져온다.

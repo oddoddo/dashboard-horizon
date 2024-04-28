@@ -9,20 +9,27 @@ import { useEffect, useState } from 'react'
 function Home() {
     const [color, setColor] = useState('yellow')
 
+    // 마운트 될 때 배경색 변경
     useEffect(() => {
         document.body.style.backgroundColor = color
+        document.body.id = 'home'
+        document.body.classList.add(color)
+
+        // 언마운트 될 때
         return () => {
             document.body.style.backgroundColor = 'white'
+            document.body.id = ''
+            document.body.classList.remove(color)
         }
     }, [color])
 
-    function changeColor() {
-        setColor((prevColor) => (prevColor === 'yellow' ? 'red' : 'yellow'))
+    function toggleColor() {
+        setColor((preColor) => (preColor === 'yellow' ? 'red' : 'yellow'))
     }
 
     return (
         <div>
-            <button onClick={changeColor}>색상 변경</button>
+            <button onClick={toggleColor}>색상 변경</button>
             <Card>
                 <LineChart chartData={lineChartDataTotalSpent} chartOptions={lineChartOptionsTotalSpent} />
             </Card>
