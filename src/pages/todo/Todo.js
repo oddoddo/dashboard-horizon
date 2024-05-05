@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useReducer, useState } from 'react'
 import TodoHd from './components/TodoHd'
 import TodoEditor from './components/TodoEditor'
 import TodoList from './components/TodoList'
+import { TodoProvider } from '../../contexts/TodoContext'
+import { Provider } from 'react-redux'
+import store from '../../store'
 
 const Todo = () => {
     return (
-        <div>
+        <Provider store={store}>
             <TodoHd />
             <TodoEditor />
             <TodoList />
-        </div>
+        </Provider>
     )
 }
 
