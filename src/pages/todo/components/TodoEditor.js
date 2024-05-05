@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Heading, Input } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../../../store/slices/todoSlice'
 
@@ -7,7 +7,7 @@ const TodoEditor = () => {
     const [task, setTask] = useState('')
     const dispatch = useDispatch()
 
-    function onSubmit() {
+    const onSubmit = useCallback(() => {
         if (!task) return
         dispatch(
             addTodo({
@@ -18,17 +18,20 @@ const TodoEditor = () => {
             }),
         )
         setTask('')
-    }
+    }, [task, dispatch])
 
-    function onChange(e) {
+    const onChange = useCallback((e) => {
         setTask(e.target.value)
-    }
+    }, [])
 
-    function onKeyDown(e) {
-        if (e.key === 'Enter') {
-            onSubmit()
-        }
-    }
+    const onKeyDown = useCallback(
+        (e) => {
+            if (e.key === 'Enter') {
+                onSubmit()
+            }
+        },
+        [onSubmit],
+    )
 
     return (
         <Box py={5}>
