@@ -1,36 +1,35 @@
+// TodoList.js
 import React, { useState } from 'react'
 import TodoItem from './TodoItem'
-import { Box, Heading, Input } from '@chakra-ui/react'
-import { useTodoState } from '../../../contexts/TodoContext'
 import { useSelector } from 'react-redux'
 
-const TodoList = () => {
+function TodoList() {
     const [search, setSearch] = useState('')
-    // const todo = useTodoState()
-    const todo = useSelector((state) => state.todo.todos)
+    const todos = useSelector((state) => state.todo.todos) // 수정된 부분
 
-    function onChangeSearch(e) {
+    const onChangeSearch = (e) => {
         setSearch(e.target.value)
     }
 
-    // 검색어가 포함된 todo만 필터링
     const filteredTodo = () => {
-        return todo.filter((item) => item.task.toLowerCase().includes(search.toLowerCase()))
+        if (Array.isArray(todos)) {
+            return todos.filter((item) => item.task.toLowerCase().includes(search.toLowerCase()))
+        } else {
+            return []
+        }
     }
 
     return (
-        <Box py={5}>
-            <Heading as={'h2'} fontSize={20}>
-                할 일 목록
-            </Heading>
-            <Input value={search} onChange={onChangeSearch} type="text" placeholder="search" my={3} bg={'white'} />
+        <div>
+            <h3>할 일 목록 📃</h3>
+            <input type="text" placeholder="검색어를 입력하세요" onChange={onChangeSearch} value={search} />
 
-            <ul>
+            <div>
                 {filteredTodo().map((item) => (
                     <TodoItem key={item.id} {...item} />
                 ))}
-            </ul>
-        </Box>
+            </div>
+        </div>
     )
 }
 

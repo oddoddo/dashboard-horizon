@@ -1,24 +1,27 @@
 import { Box, Button, Flex, Heading, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
-// import { useTodoDispatch, useTodoState } from '../../../contexts/TodoContext'
-import { addTodo } from '../../../store/actions/todoAction'
 import { useDispatch } from 'react-redux'
+import { addTodo } from '../../../store/slices/todoSlice'
 
 const TodoEditor = () => {
     const [task, setTask] = useState('')
-    // const state = useTodoState()
-    // const dispatch = useTodoDispatch()
-
     const dispatch = useDispatch()
-
-    function onChange(e) {
-        setTask(e.target.value)
-    }
 
     function onSubmit() {
         if (!task) return
-        dispatch(addTodo(task))
+        dispatch(
+            addTodo({
+                id: Date.now(),
+                isDone: false,
+                task,
+                createdDate: new Date().getTime(),
+            }),
+        )
         setTask('')
+    }
+
+    function onChange(e) {
+        setTask(e.target.value)
     }
 
     function onKeyDown(e) {

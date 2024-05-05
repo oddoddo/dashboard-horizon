@@ -1,28 +1,18 @@
-import { Button, Checkbox, Flex, FormLabel, Spacer, Text } from '@chakra-ui/react'
 import React from 'react'
+import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
-import { deleteTodo, updateTodo } from '../../../store/actions/todoAction'
+import { updateTodo, deleteTodo } from '../../../store/slices/todoSlice' // todoSlice에서 액션 함수 가져오기
 
-const TodoItem = ({ id, isDone, task, createdDate }) => {
+function TodoItem({ id, isDone, task, createdDate }) {
     const dispatch = useDispatch()
 
     return (
-        <Flex key={id} as={'li'} alignItems={'center'} gap={3}>
-            <Checkbox onChange={() => dispatch(updateTodo(id))} checked={isDone} name="todoTask" id="todoTask">
-                <Text textDecoration={isDone ? 'line-through' : 'none'} as={'strong'} fontSize={20} fontWeight={600}>
-                    {task}
-                </Text>
-                <span>{new Date(createdDate).toLocaleDateString()}</span>
-            </Checkbox>
-            <Spacer />
-            <Button
-                onClick={() => {
-                    dispatch(deleteTodo(id))
-                }}
-            >
-                삭제
-            </Button>
-        </Flex>
+        <li key={id}>
+            <input type="checkbox" checked={isDone} onChange={() => dispatch(updateTodo(id))} />
+            <strong style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{task}</strong>
+            <span>{format(new Date(createdDate), 'yyyy.MM.dd')}</span>
+            <button onClick={() => dispatch(deleteTodo(id))}>삭제</button>
+        </li>
     )
 }
 
